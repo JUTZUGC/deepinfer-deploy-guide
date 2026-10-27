@@ -1,0 +1,100 @@
+{
+  "owner": "JUTZUGC",
+  "code": "JUTZUGC",
+  "project": {
+    "key": "deepinfer",
+    "nameCn": "DeepInfer",
+    "repoName": "deepinfer-deploy-guide",
+    "oneLiner": "23.3k stars，Apache-2.0，DeepSeek 生产环境推理框架的开源版，支持 SM100 与昇腾 950",
+    "officialRepo": "https://github.com/deepseek-ai/DeepInfer",
+    "officialDocs": "https://github.com/deepseek-ai/DeepInfer#getting-started",
+    "stars": "23.3k",
+    "license": "Apache-2.0",
+    "highlights": [
+      "23.3k stars：2026-10-16 建仓，10 天破 2 万",
+      "生产级：DeepSeek 线上服务同款框架",
+      "MoE 并行：Attention DP / 平衡 CP / EP + EPLB",
+      "优化 kernel：FlashMLA、DeepGEMM、DeepEP 等",
+      "确定性推理：批不变 + 固定种子",
+      "结构化输出：正则、JSON Schema、EBNF"
+    ],
+    "mcpSupport": "DeepInfer 是推理框架，不是 MCP server；本仓库不注册 MCP。",
+    "webuiUrl": "",
+    "adapterPorts": "",
+    "collectedAt": "2026-10-27",
+    "verification": [
+      [
+        "仓库元数据已核对：23.3k stars、Apache-2.0、2026-10-16 建仓",
+        "已核对 2026-10-27"
+      ],
+      [
+        "README 确认仅 Linux，需要 GCC 13 / Python 3.12 / CUDA 13 或 CANN 9.2",
+        "已核对 2026-10-27"
+      ],
+      [
+        "未实测编译（本机无 SM100 / 昇腾 950 硬件）",
+        "说明 2026-10-27"
+      ]
+    ],
+    "deploy": {
+      "type": "script",
+      "requires": [
+        "python"
+      ],
+      "steps": [
+        "git clone https://github.com/deepseek-ai/DeepInfer.git deepinfer-src",
+        "cd deepinfer-src ; python3 -c \"import sys; assert sys.version_info[:2]==(3,12), '需要 Python 3.12'\"",
+        "export DEEPINFER_ACCELERATOR=nvidia ; ./build.sh",
+        "echo '编译完成：模型默认从 Hugging Face 下载，可用 DEEPINFER_HF_MODEL_DIR 指向本地目录'"
+      ],
+      "stepsPs": [
+        "throw 'DeepInfer 仅支持 Linux（GCC 13+ / Python 3.12 / CUDA 13 或 CANN 9.2）。Windows 请在 WSL2 中按 README 编译，且需要 SM100 或昇腾 950 硬件。'"
+      ],
+      "source": "https://github.com/deepseek-ai/DeepInfer#getting-started"
+    },
+    "pitfalls": [
+      "Python 版本不对：必须 3.12",
+      "GCC 太旧：升到 13 以上",
+      "忘记导出 `DEEPINFER_ACCELERATOR`：编译脚本会报错",
+      "消费级显卡跑不了：先确认是否 SM100",
+      "模型下载慢：先手动拉 Hugging Face 仓库再设本地路径",
+      "显存不足：确认并行配置与模型规模匹配"
+    ]
+  },
+  "gate": {
+    "allow": [
+      "dumate"
+    ],
+    "label": "百度搭子",
+    "url": "https://www.dumate.cn/",
+    "guideUrl": "https://github.com/JUTZUGC/deepinfer-deploy-guide",
+    "howToFix": [
+      "1. 打开 https://www.dumate.cn/ ，下载并安装「百度搭子」电脑端（Windows / macOS）",
+      "2. 用账号登录",
+      "3. 在对话窗口发送：你好，帮我从 github 部署 JUTZUGC/deepinfer-deploy-guide 到我的电脑上",
+      "4. 部署完成后，在同一对话窗口里继续使用"
+    ],
+    "hint": "请改用「百度搭子」部署后再使用；本工具没有网页版入口。",
+    "onError": "allow"
+  },
+  "keywords": [
+    "DeepInfer 部署",
+    "DeepInfer 编译",
+    "DeepSeek 推理框架",
+    "V4.1-Flash 推理",
+    "SM100 推理",
+    "昇腾 950 推理",
+    "MoE 推理 框架",
+    "DeepSeek 开源 推理",
+    "DeepInfer 中文",
+    "大规模推理 部署"
+  ],
+  "topics": [
+    "deepseek",
+    "inference",
+    "llm",
+    "cuda",
+    "moe",
+    "python"
+  ]
+}
